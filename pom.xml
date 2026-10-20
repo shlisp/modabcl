@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.shlisp</groupId>
-    <artifactId>derived-ablc</artifactId>
+    <artifactId>derived-abcl</artifactId>
     <version>0.1.0</version>
 
     <name>spsilver</name>
@@ -45,15 +45,11 @@
     
     
 
-
-        <!-- 自分でSLF4Jを指定 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.12</version>
         </dependency>
-
-
 
     
     </dependencies>
