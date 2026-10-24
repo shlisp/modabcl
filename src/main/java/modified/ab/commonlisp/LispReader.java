@@ -117,26 +117,22 @@ public final class LispReader {
             int col = stream.reader.getColumnNumber();
 
             Object obj = stream.readList(false, Stream.currentReadtable, '}');
-            if (obj instanceof ABCons) {
+            if (obj instanceof ABCons loc) {
 
-                ABCons loc = (ABCons) obj;
-                LineNumber meta = loc.meta();
-                if (meta == null) {
+//                LineNumber meta = loc.meta();
 
-                    int line2 = stream.reader.getLineNumber();
-                    int col2 = stream.reader.getColumnNumber();
+                int line2 = stream.reader.getLineNumber();
+                int col2 = stream.reader.getColumnNumber();
 
-                    meta = new LineNumber(line, col - 1, line2, col2);
-                    // 先頭のセルだけを、PMapに変更する
-                    return new PMap(meta, loc.getCar(), loc.getCdr());
-                } else {
-                    LineNumber newLN = new LineNumber(meta, line, col);
-                    // 先頭のセルだけを、PMapに変更する
-                    return new PMap(newLN, loc.getCar(), loc.getCdr());
-                }
+                LineNumber attr = new LineNumber(line, col - 1, line2, col2);
+                return new PMap(attr, obj);
 
             } else {
-                return obj;
+                int line2 = stream.reader.getLineNumber();
+                int col2 = stream.reader.getColumnNumber();
+
+                LineNumber attr = new LineNumber(line, col - 1, line2, col2);
+                return new PMap(attr, obj);
             }
 
         }
@@ -153,27 +149,21 @@ public final class LispReader {
             int col = stream.reader.getColumnNumber();
 
             Object obj = stream.readList(false, Stream.currentReadtable, ']');
-            if (obj instanceof ABCons) {
+            if (obj instanceof ABCons loc) {
 
-                ABCons loc = (ABCons) obj;
-                LineNumber meta = loc.meta();
-                if (meta == null) {
-                    int line2 = stream.reader.getLineNumber();
-                    int col2 = stream.reader.getColumnNumber();
+//                LineNumber meta = loc.meta();
+                int line2 = stream.reader.getLineNumber();
+                int col2 = stream.reader.getColumnNumber();
 
-                    meta = new LineNumber(line, col - 1, line2, col2);
-                    // 先頭のセルだけを、PVector に変更する
-                    return new PVector(meta, loc.getCar(), loc.getCdr());
-                } else {
-                    LineNumber newLN = new LineNumber(meta, line, col);
-                    // 先頭のセルだけを、PVector に変更する
-                    return new PVector(newLN, loc.getCar(), loc.getCdr());
-                }
+                LineNumber meta = new LineNumber(line, col - 1, line2, col2);
+                return new PVector(meta, obj);
 
             } else {
-                return obj;
+                int line2 = stream.reader.getLineNumber();
+                int col2 = stream.reader.getColumnNumber();
+                LineNumber meta = new LineNumber(line, col - 1, line2, col2);
+                return  new PVector(meta, obj);
             }
-
         }
     };
 

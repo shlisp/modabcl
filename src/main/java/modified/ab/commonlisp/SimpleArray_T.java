@@ -47,7 +47,8 @@ public class SimpleArray_T  extends LispObject {
     
     public SimpleArray_T(int rank, Object initialContents) {
 
-        if (rank < 2) {
+        // 2026-10-24 #1A も受け付ける（中身の確認は shlisp の ListTransformer で行う）
+        if (rank < 1) {
             Debug.assertTrue(false);
         }
     

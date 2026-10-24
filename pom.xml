@@ -5,45 +5,27 @@
 
     <groupId>io.github.shlisp</groupId>
     <artifactId>derived-abcl</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.5</version>
 
-    <name>spsilver</name>
+    <name>derived-abcl</name>
     <!-- FIXME change it to the project's website -->
     <url>https://github.com/shlisp</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>25</maven.compiler.release>
-    
-    
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.0</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <dependencies>
+        <!-- JUnit 4 -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- Optionally: parameterized tests support -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <scope>test</scope>
-        </dependency>
-    
-    
+
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -51,7 +33,6 @@
             <version>2.0.12</version>
         </dependency>
 
-    
     </dependencies>
 
     <build>

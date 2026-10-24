@@ -34,26 +34,23 @@ We have modified our GPLv2 license section 13 to read:
  */
 package modified.ab.util;
 
-import modified.ab.commonlisp.ABCons;
 
-public class PVector extends ABCons {
+public final class PVector {
 
-    public PVector(LineNumber meta, Object first, Object more) {
-        super(meta, first, more);
+    private final LineNumber attr;
+    private final Object obj;
+    
+    public PVector(LineNumber meta, Object first) {
+        this.attr = meta;
+        this.obj = first;
     }
 
-    @Override
     public LineNumber meta() {
-        return _meta;
+        return attr;
     }
 
-    @Override
-    public ILocation withMeta(LineNumber meta) {
-
-        if (_meta == meta) {
-            return this;
-        }
-        return new PVector(meta, car, cdr);
+    public Object getInnerObject() {
+        return obj;
     }
 
 }

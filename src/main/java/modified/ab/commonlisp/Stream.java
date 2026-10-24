@@ -600,6 +600,9 @@ public class Stream extends LispObject {
             return error(new ReaderError(obj.princToString() + " is not a sequence.",
                                          this));
         }*/
+        // 2026-10-24 #0A は今は対応しない
+        case 0:
+            return error(new ReaderError("#0A (zero-dimensional array) is not supported.", this));
         default:
             return new SimpleArray_T(rank, obj);
         }
