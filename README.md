@@ -1,6 +1,5 @@
-# README
+# Overview
 
-Overview
 This project extracts the READER component from Armed Bear Common Lisp (ABCL) and integrates it into a custom Lisp implementation.
 The goal is to reuse ABCL’s mature and well-tested reader as the foundation for a lightweight Lisp system.
 
