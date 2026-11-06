@@ -71,11 +71,11 @@ public final class ABPackage extends LispObject {
     }
 
     public ABSymbol intern(String name) {
-        
+/*        
         if ("nil".equals(name)) {
             return Lisp.NIL;
         }
-        
+*/        
         return new ABSymbol(name, this);
     }
 

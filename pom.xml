@@ -5,7 +5,7 @@
 
     <groupId>io.github.shlisp</groupId>
     <artifactId>derived-abcl</artifactId>
-    <version>0.1.5</version>
+    <version>0.1.6</version>
 
     <name>derived-abcl</name>
     <!-- FIXME change it to the project's website -->

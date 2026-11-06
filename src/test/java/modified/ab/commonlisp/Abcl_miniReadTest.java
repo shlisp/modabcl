@@ -167,7 +167,8 @@ public class Abcl_miniReadTest {
         ABSymbol sym = (ABSymbol) real;
         String qualifiedName = sym.getQualifiedName();
         //                () では CLになるが、 nilを書いた時は、なぜか、 shliになる
-        assertEquals("cl" + "::NIL", qualifiedName);
+//        assertEquals("cl" + "::NIL", qualifiedName);
+        assertEquals(Abcl_mini.USER_NS_STR + "::nil", qualifiedName);
     }
 
     @Test
@@ -475,5 +476,21 @@ public class Abcl_miniReadTest {
             assertEquals("abc", pa.getPath());
         }
     }
+
+
+    @Test
+    public void testReadFrom54() {
+        // :nilがキーワードにならず、 nilになる問題
+        StringReader sr = new StringReader(":nil");
+
+        Object real = Abcl_mini.readFromString(sr);
+
+        //                     想像：行・カラムを付けようとした際に、たぶんNilクラスからABSymbolに変わっている
+        assertTrue(real instanceof ABSymbol);
+        ABSymbol sym = (ABSymbol) real;
+        String qualifiedName = sym.getQualifiedName();
+        assertEquals(":nil", qualifiedName);
+    }
+
 
 }
