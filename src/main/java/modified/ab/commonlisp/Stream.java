@@ -827,15 +827,11 @@ public class Stream extends LispObject {
             } else {
                 int index = findUnescapedDoubleColon(token, flags);
                 if (index > 0) {
-                    /*
+                    // 2026-11-08 pkg::name を読む（shlisp3 のパッケージ。doubleColon の印を付けた ABSymbol を返す）
                     packageName = token.substring(0, index);
-                    packageFlags = (flags != null) ? flags.get(0, index) :  null;
                     symbolName = token.substring(index + 2);
-                    symbolFlags = (flags != null) ? flags.get(index+2, flags.size()) : null;
-                    */
-                    
-                    return error(new ReaderError("This parser does not support ::", this));
-                    
+                    ABPackage p2 = Packages.findOrCreatePackage(packageName);
+                    return new ABSymbol(null, new SimpleString(symbolName), p2, true);
                 } else {
                     index = findUnescapedSingleColon(token, flags);
                     if (index > 0) {

@@ -55,29 +55,36 @@ public class ABSymbol extends LispObject implements ILocation {
 
     private final LineNumber _meta;
 
+    // 2026-11-08 pkg::name と書いた時 true（shlisp3 が、export していない名前を使ってよいかを見る）
+    private final boolean doubleColon;
+
     // Construct an uninterned symbol.
     public ABSymbol(String s) {
         name = new SimpleString(s);
         pkg = NIL;
         _meta = null;
+        doubleColon = false;
     }
 
     public ABSymbol(SimpleString string) {
         name = string;
         pkg = NIL;
         _meta = null;
+        doubleColon = false;
     }
 
     public ABSymbol(String s, ABPackage pkg) {
         name = new SimpleString(s);
         this.pkg = pkg;
         _meta = null;
+        doubleColon = false;
     }
 
     public ABSymbol(SimpleString string, ABPackage pkg) {
         name = string;
         this.pkg = pkg;
         _meta = null;
+        doubleColon = false;
     }
 
     // 注意：以下は clojure風なので、internされていない
@@ -85,6 +92,19 @@ public class ABSymbol extends LispObject implements ILocation {
         name = string;
         this.pkg = pkg;
         _meta = meta;
+        doubleColon = false;
+    }
+
+    // 2026-11-08 pkg::name 用
+    public ABSymbol(LineNumber meta, SimpleString string, LispObject pkg, boolean doubleColon) {
+        name = string;
+        this.pkg = pkg;
+        _meta = meta;
+        this.doubleColon = doubleColon;
+    }
+
+    public boolean isDoubleColon() {
+        return doubleColon;
     }
 
     @Override
@@ -125,7 +145,7 @@ public class ABSymbol extends LispObject implements ILocation {
             return this;
         }
         // 不変クラスなので、新しいオブジェクトを new する必要あり
-        return new ABSymbol(meta, name, pkg);
+        return new ABSymbol(meta, name, pkg, doubleColon);
 
     }
 
